@@ -27,7 +27,7 @@ on:
       debs_repo:
         description: "Set fnnas debs repository"
         required: false
-        default: "purebaba/fnnas"
+        default: "ophub/fnnas"
       debs_version:
         description: "Set fnnas debs version"
         required: false
