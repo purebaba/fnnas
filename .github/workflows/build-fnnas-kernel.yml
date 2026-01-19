@@ -27,7 +27,7 @@ on:
       debs_repo:
         description: "Set fnnas debs repository"
         required: false
-        default: "ophub/fnnas"
+        default: "purebaba/fnnas"
       debs_version:
         description: "Set fnnas debs version"
         required: false
@@ -152,12 +152,12 @@ jobs:
           [[ "${?}" -ne "0" ]] && echo "Download failed." && exit 1
 
           ln -sf /builder/fnnas ${{ github.workspace }}/fnnas
-          ln -sf /builder/fnnas /home/runner/work/_actions/ophub/fnnas/main/fnnas
+          ln -sf /builder/fnnas /home/runner/work/_actions/purebaba/fnnas/main/fnnas
 
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the fnnas kernel [ ${{ inputs.debs_version }} ]
-        uses: ophub/fnnas@main
+        uses: purebaba/fnnas@main
         if: ${{ steps.down.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
@@ -179,9 +179,9 @@ jobs:
           makeLatest: false
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
-            - FnNAS Dedicated Kernel. Based on official [dtbs](https://github.com/ophub/fnnas/releases/tag/kernel_fnnas) packages from `fnnas.com`,
+            - FnNAS Dedicated Kernel. Based on official [dtbs](https://github.com/purebaba/fnnas/releases/tag/kernel_fnnas) packages from `fnnas.com`,
               and repackaged into .tar.gz format using the `rekernel` tool.
               It is optimized for batch packaging and supports online updates via the `fnnas-update` command.
-            - FnNAS 专用内核。基于 `fnnas.com` 官方提供的 [dtbs](https://github.com/ophub/fnnas/releases/tag/kernel_fnnas) 安装包，
+            - FnNAS 专用内核。基于 `fnnas.com` 官方提供的 [dtbs](https://github.com/purebaba/fnnas/releases/tag/kernel_fnnas) 安装包，
               利用本仓库的 `rekernel` 工具重新封装为 .tar.gz 格式。
               该内核既适用于批量打包，也支持通过 `fnnas-update` 命令进行在线更新。
