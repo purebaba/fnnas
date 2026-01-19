@@ -220,7 +220,7 @@ download_dtbs() {
     # Get the latest version from github releases(e.g: 6.12.41)
     latest_version="$(
         curl -fsSL \
-            https://github.com/ophub/kernel/releases/expanded_assets/kernel_stable |
+            https://github.com/purebaba/kernel/releases/expanded_assets/kernel_stable |
             grep -oE "${kernel_verpatch}\.[0-9]+\.tar\.gz" |
             sed "s/\.tar\.gz//" |
             sort -urV | head -n 1
@@ -231,7 +231,7 @@ download_dtbs() {
     # Set the dtbs download path
     tmp_dtbs_path="$(mktemp -d)"
     mkdir -p "${tmp_dtbs_path}"/{allwinner,amlogic,rockchip}
-    dtbs_down_from="https://github.com/ophub/kernel/releases/download/kernel_stable/${latest_version}.tar.gz"
+    dtbs_down_from="https://github.com/purebaba/kernel/releases/download/kernel_stable/${latest_version}.tar.gz"
 
     # Download the kernel dtbs files. If the download fails, try again 10 times.
     echo -e "${INFO} Downloading kernel dtbs files from: [ ${dtbs_down_from} ]"
